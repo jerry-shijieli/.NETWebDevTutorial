@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WebApplication.Models.Customer>
+@*
+    Note: This is a simple interface implemeented by the list class. Since in this view it only iterate over this list, and don't 
+    need any of the operations in the List class (eg Add, Remove, etc), it 's better to use the IEnumerable inerface, which allows
+     use to iterate over th list. In future, it will replace the List with a different data sturcutre, as long as it is enumerable.   
+*@
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model) // add link to detail on each customer name
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(customer.Name, "Details", "Customers", new {id = customer.Id}, null) 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
