@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Microsoft.Ajax.Utilities;
 using WebApplication.Models;
 
@@ -18,6 +19,7 @@ namespace WebApplication.Controllers
             return View(movie);
         }
 
+        [Route("movies/released/{year:regex(\\d{4})}/{month:regex(\\d{2}):range(1,12)}")]
         public ActionResult ByReleaseDate(int year, int month)
         {
             return Content(year+"/"+month);
