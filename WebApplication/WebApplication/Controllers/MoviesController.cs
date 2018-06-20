@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.Ajax.Utilities;
 using WebApplication.Models;
+using WebApplication.ViewModels;
 
 namespace WebApplication.Controllers
 {
@@ -15,10 +16,21 @@ namespace WebApplication.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() {Name = "Shrek!"};
+            var customers = new List<Customer>
+            {
+                new Customer {Name = "Customer 1"},
+                new Customer {Name = "Customer 2"}
+            };
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
 
-            return View(movie);
+
+            return View(viewModel);
         }
-
+        
         [Route("movies/released/{year:regex(\\d{4})}/{month:regex(\\d{2}):range(1,12)}")]
         public ActionResult ByReleaseDate(int year, int month)
         {
