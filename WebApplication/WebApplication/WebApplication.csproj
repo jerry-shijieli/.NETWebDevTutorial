@@ -253,6 +253,10 @@
     <Compile Include="Migrations\201806210511257_PopulateMovies.Designer.cs">
       <DependentUpon>201806210511257_PopulateMovies.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808060219460_CustomerAndMovieModelAttributeChange.cs" />
+    <Compile Include="Migrations\201808060219460_CustomerAndMovieModelAttributeChange.Designer.cs">
+      <DependentUpon>201808060219460_CustomerAndMovieModelAttributeChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -386,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806210511257_PopulateMovies.resx">
       <DependentUpon>201806210511257_PopulateMovies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808060219460_CustomerAndMovieModelAttributeChange.resx">
+      <DependentUpon>201808060219460_CustomerAndMovieModelAttributeChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

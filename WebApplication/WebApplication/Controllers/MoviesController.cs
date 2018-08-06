@@ -36,8 +36,19 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Movie movie)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new MovieFormViewModel(movie)
+                {
+                    Genres = _context.Genres.ToList()
+                };
+
+                return View("MovieForm", viewModel);
+            }
+
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
@@ -75,15 +86,6 @@ namespace WebApplication.Controllers
             return View(movie);
         }
 
-        //private IEnumerable<Movie> GetMovies()
-        //{
-        //    return new List<Movie>
-        //    {
-        //        new Movie {Id = 1, Name="Shrek"},
-        //        new Movie {Id = 2, Name = "Wall-e"}
-        //    };
-        //}
-
         // GET: Movies/Random
         public ActionResult Random()
         {
@@ -116,22 +118,12 @@ namespace WebApplication.Controllers
             if (movie == null)
                 return HttpNotFound();
 
-            var viewModel = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel(movie)
             {
-                Movie = movie,
                 Genres = _context.Genres.ToList()
             };
 
             return View("MovieForm", viewModel);
         }
-
-        //public ActionResult Index(int? pageIndex, string sortBy)
-        //{
-        //    if (!pageIndex.HasValue)
-        //        pageIndex = 1;
-        //    if (sortBy.IsNullOrWhiteSpace())
-        //        sortBy = "Name";
-        //    return Content(String.Format("PageIndex={0}&SortBy={1}", pageIndex, sortBy));
-        //}
     }
 }
