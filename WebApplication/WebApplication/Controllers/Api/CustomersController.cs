@@ -9,6 +9,7 @@ using AutoMapper;
 using AutoMapper.Mappers;
 using WebApplication.Dtos;
 using WebApplication.Models;
+using System.Data.Entity;
 
 namespace WebApplication.Controllers.Api
 {
@@ -24,7 +25,11 @@ namespace WebApplication.Controllers.Api
         // GET /api/customers
         public IHttpActionResult GetCustomers()
         {
-            var customerDtos = _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+            var customerDtos = _context.Customers
+                .Include(c => c.MembershipType)
+                .ToList()
+                .Select(Mapper.Map<Customer, CustomerDto>);
+
             return Ok(customerDtos);
         }
 
