@@ -51,7 +51,7 @@ namespace WebApplication.Controllers.Api
 
         // POST /api/customers
         [HttpPost]
-        public IHttpActionResult CreatCustomer(CustomerDto customerDto)
+        public IHttpActionResult CreateCustomer(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
